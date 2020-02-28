@@ -1,6 +1,6 @@
 ﻿#region License
 // TableDependency, SqlTableDependency
-// Copyright (c) 2015-2017 Christian Del Bianco. All rights reserved.
+// Copyright (c) 2015-2020 Christian Del Bianco. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -30,9 +30,9 @@ using System.Threading.Tasks;
 
 namespace TableDependency.SqlClient.Extensions
 {
-    internal static class TaskExtensions
+    public static class TaskExtensions
     {
-        internal static async Task<T> WithCancellation<T>(this Task<T> task, CancellationToken cancellationToken)
+        public static async Task<T> WithCancellation<T>(this Task<T> task, CancellationToken cancellationToken)
         {
             var tcs = new TaskCompletionSource<bool>();
             using (cancellationToken.Register(s => ((TaskCompletionSource<bool>)s).TrySetResult(true), tcs))
